@@ -54,7 +54,7 @@ int main(void)
 		printf("%s\n", area[i]);
 	printf("\n");
 
-	t_point begin = {7, 4};
+	t_point begin = {5, 1};
 	flood_fill(area, size, begin);
 	for (int i = 0; i < size.y; ++i)
 		printf("%s\n", area[i]);

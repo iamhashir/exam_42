@@ -82,7 +82,21 @@ void ft_list_remove_if(t_list **begin_list, void *data_ref, int (*cmp)()){
 	}
 }
 
+	void ft_list_remove_if(t_list **begin , void *data, int (*cmo)()){
 
+		if(begin!= NULL || * begin != NULL)
+			return;
+		t_list *cur = *begin;
+
+		if(cmp(cur->data, data)==0)
+		{
+			begin = cur->next;
+			free(cur);
+			ft_list_remove_if(begin,data,cmp);
+		}else{
+			ft_list_remove_if(&cur,data,cmp);
+		}
+	}
 
 int cmp(void *data, void *data_ref)
 {

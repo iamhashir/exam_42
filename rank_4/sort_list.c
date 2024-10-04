@@ -3,7 +3,7 @@
 #include "ft_list.h"
 
 int cmp(int a, int b) {
-	return (a >= b);
+	return (a <= b);
 }
 
  
@@ -32,44 +32,39 @@ int cmp(int a, int b) {
 t_list *sort_list(t_list *head,int (*cmp)(int, int) ){
 	t_list *start = head;
 	int swap;
-	while(head !=NULL && head->next !=NULL){
+	while(head->next!=NULL){
 		if((*cmp)(head->data,head->next->data)==0){
 			swap = head->data;
 			head->data=head->next->data;
 			head->next->data=swap;
 			head=start;
-		} else{
-			head=head->next;
 		}
+		head=head->next;
 	}
 	return start;
+}
+int main(){
 
+	t_list *node = (t_list *)malloc(sizeof(t_list));
+	
+	node->data=42;
+	node->next=NULL;
+	t_list *node1 = (t_list *)malloc(sizeof(t_list));
+	node1->data=52;
+	node1->next=node;
+	t_list *node2 = (t_list *)malloc(sizeof(t_list));
+	node2->data=62;
+	node2->next=node1;
+	t_list *node3 = (t_list *)malloc(sizeof(t_list));
+	node3->data=2;
+	node3->next=node2;
+
+	t_list *c=node3;
+
+	sort_list(node3,&cmp);
+	while(c){
+		printf("%d\n",c->data);
+		c=c->next;
+	}
 }
 
-int main() {
-   t_list *head = (t_list *)malloc(sizeof(t_list));
-   head->data = 50;
-
-   t_list* n1 = (t_list *)malloc(sizeof(t_list));
-   n1->data = 152;
-   head->next = n1;
-
-   t_list *n2 = (t_list *)malloc(sizeof(t_list));
-   n2->data = 5;
-   n1->next = n2;
-
-	t_list *current = head;
-	while(current != NULL){
-		printf(" %d ",current->data);
-		current=current->next;
-	}
-	head = sort_list(head, cmp);
-	current = head;
-	printf("\n");
-	while(current != NULL){
-		printf(" %d ",current->data);
-		current=current->next;
-	}
-
-    return 0;
-}

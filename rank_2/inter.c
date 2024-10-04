@@ -1,33 +1,26 @@
 #include "unistd.h"
-int main(int argc, char **v)
-{
-
-	char a[255] = {0};
-	int i = 0;
-	int j = 0;
-	if (argc == 3)
-	{
-		while (v[1][i])
-		{
-			j = 0;
-			while (v[2][j])
-			{
-				if (v[1][i] == v[2][j])
-				{
-					if (!a[v[1][i]])
-					{
-						write(1, &v[1][i], 1);
-						a[v[1][i]] = 1;
-					}
-					break;
+void inter(char *s,char *c){
+	char seen[255]= {0};
+	int  i = 0 ;
+	int  j = 0 ;
+		i = 0;
+	while(s[i]){
+		j = 0;
+		while(c[j]){
+			if(s[i]==s[j]){
+				if(!seen[s[i]]){
+					seen[s[i]] =1;
+					write(1,&s[i],1);
 				}
-				j++;
+				break;
 			}
-			i++;
+			j++;
 		}
+		i++;
 	}
-	else
-	{
-		write(1, &"\n", 1);
-	}
+
+}
+int main(){
+
+	inter("padinton", "paqefwtdjetyiytjneytjoeyjnejeyj"  );
 }

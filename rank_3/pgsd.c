@@ -9,12 +9,10 @@ int main(int argc, char **argv)
 	if(nbr1>0 && nbr2 >0){
 		while(nbr2!=nbr1)
 		{
-			if(nbr1>nbr2){
+			if(nbr1>nbr2)
 				nbr1-=nbr2;
-			}
-			else{
+			else
 				nbr2-=nbr1;
-			}
 		}
 			printf("%d",nbr1);
 	}
